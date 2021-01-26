@@ -1,0 +1,42 @@
+.file-input {
+    width: 600px !important;
+    height: 100px !important;
+    opacity: 0;
+
+
+}
+.file-input :hover {
+    background: #ccc;
+}
+
+.uploaded-img {
+    height: 100px !important;
+}
+
+.file-uploader-mask {
+    position: absolute;
+    border-radius: 5px;
+    width: 600px !important;
+    height: 100px !important;
+    border: 2px dashed #ccc;
+}
+
+.file-uploader-icon {
+    width: 35px !important;
+    height: 35px !important;
+
+}
+
+.dropzone-uploader-mask {
+    width: 95%;
+    position: absolute;
+    border-radius: 5px;
+    height: 200px !important;
+    border: 2px dashed #ccc;
+}
+
+.dropzone-input {
+    width: 100% !important;
+    height: 200px !important;
+    opacity: 0;
+}

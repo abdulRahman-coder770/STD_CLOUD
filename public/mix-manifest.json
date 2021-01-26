@@ -1,0 +1,16 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/reactPlayerFacebook.js": "/reactPlayerFacebook.js",
+    "/reactPlayerMixcloud.js": "/reactPlayerMixcloud.js",
+    "/reactPlayerPreview.js": "/reactPlayerPreview.js",
+    "/reactPlayerSoundCloud.js": "/reactPlayerSoundCloud.js",
+    "/reactPlayerStreamable.js": "/reactPlayerStreamable.js",
+    "/reactPlayerTwitch.js": "/reactPlayerTwitch.js",
+    "/reactPlayerVidyard.js": "/reactPlayerVidyard.js",
+    "/vendors~reactPlayerDailyMotion.js": "/vendors~reactPlayerDailyMotion.js",
+    "/vendors~reactPlayerFilePlayer.js": "/vendors~reactPlayerFilePlayer.js",
+    "/vendors~reactPlayerVimeo.js": "/vendors~reactPlayerVimeo.js",
+    "/vendors~reactPlayerWistia.js": "/vendors~reactPlayerWistia.js",
+    "/vendors~reactPlayerYouTube.js": "/vendors~reactPlayerYouTube.js"
+}
