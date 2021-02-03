@@ -13,5 +13,6 @@ export default function roles(){
     } else if (localStorage.getItem('role_id')==='2' || localStorage.getItem('role_id')==='1'){
         return <Redirect to='/admin-dashboard'/>
     }
+
     else return <Redirect to='/login'/>
 }

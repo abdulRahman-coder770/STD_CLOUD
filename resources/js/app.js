@@ -11,5 +11,9 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+axios.interceptors.request.use(function (config) {
+    config.headers.Authorization =  'Bearer ' + localStorage.getItem('token');
+    return config;
+});
 
 require('./components/index');

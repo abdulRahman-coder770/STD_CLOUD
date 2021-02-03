@@ -6,12 +6,22 @@ use App\Mail\PasswordReset;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Tymon\JWTAuth\JWTAuth;
 
 class UserController extends Controller
 {
+    public function emailVerified(Request $request){
+        $user=User::findOrFail($request->id);
+        $user->email_verified_at=now();
+        $user->save();
+        return response()->json([
+            'status' => 1,
+        ]);
+
+    }
     public function index(){
         $users=User::all();
         return response()->json([
@@ -28,11 +38,12 @@ class UserController extends Controller
     }
     public function resetPassword(Request $request)
     {
+
         $user = User::findOrFail($request->id);
         $user->password = bcrypt(12345678);
         $user->save();
 
-//        Mail::to($user->email)->send(new PasswordReset($user->name,12345678));
+        Mail::to($user->email)->send(new PasswordReset($user->name,12345678));
 //        return response()->json(["message" => "Email sent successfully."]);
 
         return response()->json([
@@ -76,6 +87,7 @@ class UserController extends Controller
         ]);
     }
     public function switchActive(Request $request){
+        $u=Auth::user();
         $user_id=$request->user_id;
         $user=User::findOrFail($user_id);
         if($user->is_active==1){
@@ -86,6 +98,7 @@ class UserController extends Controller
         }
         $user->save();
         return response()->json([
+            'u'=>$u,
             'user'=>$user,
         ]);
     }

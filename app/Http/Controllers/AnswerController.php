@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AnswerController extends Controller
@@ -29,6 +30,7 @@ class AnswerController extends Controller
     }
     public function addAnswer(Request $request){
         $user=User::findOrFail($request->user_id);
+//        $u=Auth::user();
         if ($user->is_active==0){
             return response()->json(['user'=>$user,'message' => 'answers gotten','status'=>-1]);
         }
@@ -50,6 +52,6 @@ class AnswerController extends Controller
 //            ->groupBy('topic','id','body','post_date','edit_date','name')
             ->orderBy('post_date','desc')
             ->get();
-        return response()->json(['answer'=>$answers,'message' => 'answers gotten','status'=>1]);
+        return response()->json(['answer'=>$answers,'message' => 'answer added','status'=>1]);
     }
 }

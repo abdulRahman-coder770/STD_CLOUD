@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\confirmEmail;
+use App\Mail\PasswordReset;
 use App\Models\University;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 
 
@@ -66,13 +69,18 @@ class AuthController extends Controller
             $user_validator->validated(),
             ['password' => bcrypt($request->password)],
             ['role_id'=>4]
-        )))
+        )) ) {
+            Mail::to($request->email)->send(new confirmEmail($request->name));
 
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user,
-            'status'=>1
-        ]);
+            return response()->json([
+                'message' => 'User successfully registered',
+                'status' => 1,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+
+            ]);
+        }
         else
             return response()->json([
                 'error' => 'some thing went error while registering',

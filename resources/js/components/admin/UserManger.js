@@ -74,13 +74,25 @@ export default function UserManager() {
     }
     async function switchActive(e) {
         let user_id = e.target.value;
+        let token = localStorage.getItem("token");
 
+
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
         setUser_id(user_id)
         await axios.post("http://127.0.0.1:8000/api/auth/admin/users/switchActive", {
             'user_id': user_id
-        })
+        }
+        // ,{
+        //     headers
+        //     }
+            )
             .then((res) => {
                 console.log(res.data.user.is_active)
+                console.log(res.data.u)
                 if (res.data.user.is_active === 0) {
                     $('#btn_active_' + user_id).css('background-color', 'red');
 

@@ -10,6 +10,7 @@ use App\Models\Question;
 use App\Models\User;
 use App\Notifications\QuestionNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
@@ -71,6 +72,7 @@ class QuestionController extends Controller
 
     public function addQuestion(Request $request){
         $user=User::findOrFail($request->user_id);
+//        $user=Auth::user();
         if ($user->is_active==0){
             return response()->json(['user'=>$user,'message' => 'answers gotten','status'=>-1]);
         }

@@ -23,6 +23,8 @@ import profile from "./student/profile";
 import Blog from "./student/Blog";
 import Blogger from "./student/Blog";
 import showPost from "./student/showPost";
+import confirmEmail from "./confirmEmail";
+import emailConfirmation from "./confirm-email";
 
 export default function Index(){
 
@@ -41,6 +43,8 @@ export default function Index(){
             <Route exact path='/posts/:id' component={showPost}/>
             <Route exact path='/profile' component={profile}/>
             <Route exact path='/Blog' component={Blogger}/>
+            <Route exact path='/verify-email' component={confirmEmail}/>
+            <Route exact path='/confirm-email' component={emailConfirmation}/>
             {/*<Route exact path='/chat' component={Chatpanel}/>*/}
 
             <Route exact path='/logout' component={logout}/>

@@ -6,7 +6,7 @@ import {
     Redirect,
     BrowserRouter as Router,
     Switch,
-    Route
+    Route, Link
 } from "react-router-dom";
 
 export default function Register(props) {
@@ -41,17 +41,36 @@ export default function Register(props) {
                 if (res.data.status===0){
                     setErr(res.data.error)
                     setLoading(false)
+
                 }
                 else {
                     console.log(res.data);
+                    localStorage.setItem('username', res.data.name);
+                    localStorage.setItem('email', res.data.email);
+                    localStorage.setItem('password', res.data.password);
+                    // localStorage.setItem('userId', res.data.user.id);
+                    // localStorage.setItem('uni_id', res.data.user.university_id);
+                    // localStorage.setItem('major_id', res.data.user.major_id);
+                    // localStorage.setItem('major_name', res.data.major);
+                    // localStorage.setItem('uni_name', res.data.uni);
+                    // localStorage.setItem('role_id', res.data.user.role_id);
+                    // localStorage.setItem('photo_path', res.data.user.photo_path);
+                    // localStorage.setItem('status', res.data.user.status);
+                    // localStorage.setItem('email_verified_at', res.data.user.email_verified_at);
+                    // localStorage.setItem('is_active', res.data.user.is_active);
+                    localStorage.setItem('logged', JSON.stringify(0));
                     setLoading(false)
                     setSwitching(true)
+
                 }
 
 
             });
         }
     }
+    // if (switching){
+    //     return (<Redirect to='/confirm-email'/>)
+    // }
 
     const submit = (event) => {
         event.preventDefault();
@@ -85,13 +104,15 @@ export default function Register(props) {
             })
     }
 
-    if (switching) {
-        return (<Redirect to='/login'/>)
-    }
+    // if (switching) {
+    //     return (<Redirect to='/login'/>)
+    // }
 
     return (
         <div className="container-fluid" id='registerForm'>
-
+            {
+                switching?<Redirect to='/confirm-email'/>:<></>
+            }
             <div className="row justify-content-center">
 
 
@@ -180,9 +201,9 @@ export default function Register(props) {
                     </form>
                     <p style={{color:'red'}}>{err}</p>
                     <p className={' text-primary'}>Have an Account?
-                        <a style={{'paddingLeft':'3px'}} className='btn btn-link' href={'/login'}>
+                        <Link style={{'paddingLeft':'3px'}} className='btn btn-link' to={'/login'}>
                             <u>login</u>
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>

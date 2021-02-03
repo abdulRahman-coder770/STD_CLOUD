@@ -358,7 +358,7 @@ export default function MajorUploads() {
                                                                                                                     'color':'rgba(0, 0, 0, .4)',
                                                                                                                 'zIndex':'30'
                                                                                                             }}
-                                                                                                            className='fa fa-play'></i>
+                                                                                                            className='fa fa-play'> </i>
                                                                                                         <ReactPlayer
                                                                                                             className='react-player'
                                                                                                             url={baseUrl +file.file_path}

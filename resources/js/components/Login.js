@@ -6,7 +6,7 @@ import {
     Redirect,
     BrowserRouter as Router,
     Switch,
-    Route
+    Route, Link
 } from "react-router-dom";
 import MainApp from "../MainApp";
 import logo from "./images/logo_v1.png";
@@ -21,11 +21,15 @@ export default function Login() {
     const [logged, setLogged] = useState(localStorage.getItem('logged'))
     const [loading, setLoading] = useState(false)
     const [err, setErr] = useState('')
-
+    const [redirect,setRedirect]=useState(false)
 
     if (logged === '1') {
         // setLoading(false)
         return <Redirect to='/roles'/>
+    }
+if (redirect) {
+        // setLoading(false)
+        return <Redirect to='/confirm-email'/>
     }
 
     function loginHandler(e) {
@@ -43,7 +47,12 @@ export default function Login() {
                     if (res.data.status === 0) {
                         setErr('please enter correct email and password')
                         setLoading(false)
-                    } else {
+                    }
+                    else if(res.data.user.email_verified_at==null){
+                        setRedirect(true)
+
+                    }
+                    else {
 
                         console.log(res.data.user);
                         localStorage.setItem('token', res.data.access_token);
@@ -57,6 +66,7 @@ export default function Login() {
                         localStorage.setItem('photo_path', res.data.user.photo_path);
                         localStorage.setItem('status', res.data.user.status);
                         localStorage.setItem('is_active', res.data.user.is_active);
+                        localStorage.setItem('email_verified_at', res.data.user.email_verified_at);
                         localStorage.setItem('logged', JSON.stringify(1));
                         auth.setUserID(res.data.user.id);
                         auth.setRoleID(res.data.user.role.id);
@@ -116,7 +126,7 @@ export default function Login() {
                                 <p style={{color: 'red'}}>{err}</p>
                                 <hr/>
                                 <p className='text-primary' >Don't have an Account?
-                                    <a style={{'paddingLeft':'2px'}} href='/register'> <u>Signup</u></a></p>
+                                    <Link style={{'paddingLeft':'2px'}} to='/register'> <u>Signup</u></Link></p>
                             </div>
                         </form>
                     </div>

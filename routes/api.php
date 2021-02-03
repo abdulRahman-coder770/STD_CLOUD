@@ -43,6 +43,7 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
     Route::get('/fetchUsers', [UserController::class, 'index']);
+    Route::post('/emailVerified', [UserController::class, 'emailVerified']);
 
 //    students auth/ questions and answers
     Route::post('/students/addQuestion', [QuestionController::class, 'addQuestion']);
